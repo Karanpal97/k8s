@@ -1,0 +1,22 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: job-nginx
+  namespace: nginx
+spec: 
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      name: job
+      labels:
+        app: batch-job
+    spec:
+      containers:
+      - name: batch-container
+        image: busybox
+        command: ["sh","-c","hello-world! && sleep 10"]
+      restartPolicy: Never
+
+
+
